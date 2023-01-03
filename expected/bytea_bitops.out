@@ -1,0 +1,49 @@
+CREATE EXTENSION bytea_bitops;
+SELECT bytea_xor('\xDEAD','\xBEEF');
+ bytea_xor 
+-----------
+ \x6042
+(1 row)
+
+SELECT bytea_and('\xDEAD','\xBEEF');
+ bytea_and 
+-----------
+ \x9ead
+(1 row)
+
+SELECT bytea_or('\xDEAD','\xBEEF');
+ bytea_or 
+----------
+ \xfeef
+(1 row)
+
+SELECT bytea_not('\xDEADBEEF');
+ bytea_not  
+------------
+ \x21524110
+(1 row)
+
+SELECT '\xDEAD'::bytea # '\xBEEF';
+ ?column? 
+----------
+ \x6042
+(1 row)
+
+SELECT '\xDEAD'::bytea & '\xBEEF';
+ ?column? 
+----------
+ \x9ead
+(1 row)
+
+SELECT '\xDEAD'::bytea | '\xBEEF';
+ ?column? 
+----------
+ \xfeef
+(1 row)
+
+SELECT ~ '\xDEADBEEF'::bytea;
+  ?column?  
+------------
+ \x21524110
+(1 row)
+
